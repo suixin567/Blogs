@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Join</title>
+    {{template "head.html" .}}
+</head>
+<body>
+<form action="/register" method="post">
+    <input name="userid" value="geel"/>
+    <input name="nick"/>
+    <input name="password" type="password"/>
+    <input name="password2" type="password"/>
+    <input name="email"/>
+    <input type="submit"/>
+</form>
+
+<script type="text/javascript">
+    $('form').bind('submit', function () {
+        var tmp = ajaxSubmit(this, function () {
+            // if (tmp.responseJSON.success == true) {
+            //     alert("成功")
+            //     location.reload()
+            // } else {
+            //     alert(tmp.responseJSON.content)
+            // }
+            console.log(tmp.responseJson)
+        })
+        return false;
+    })
+</script>
+</body>
+</html>

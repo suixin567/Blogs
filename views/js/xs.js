@@ -22,14 +22,15 @@ function login() {
         data: $('#form-login').serialize(),
         success: function (result) {
             if (result.Result == true){
-                alert("预约成功！");
+                alert("识别成功！");
+                window.location.href="home";
             }else{
-                alert("提交失败！"+ result.Info);
+                alert("识别失败！"+ result.Info);
                 $("#uniq").val("");
             }
         },
         error : function() {
-            alert("提交异常！");
+            alert("发生异常！");
         }
     });
 }

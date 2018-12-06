@@ -17,3 +17,8 @@ func (c *UserController) Profile() {
 func (c *UserController) PageJoin() {
 	c.TplName = "user/join.html"
 }
+
+func (c *UserController) PageSetting() {
+	c.CheckLogin()
+	c.TplName = "user/setting.html"
+}

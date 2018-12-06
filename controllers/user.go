@@ -1,11 +1,10 @@
 package controllers
 
-import (
-	"github.com/astaxie/beego"
-)
+//	"github.com/astaxie/beego"
 
 type UserController struct {
-	beego.Controller
+	//	beego.Controller
+	BaseController
 }
 
 func (c *UserController) Profile() {

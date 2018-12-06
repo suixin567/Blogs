@@ -2,7 +2,11 @@ package controllers
 
 import (
 	"DDN_XS/models/class"
+	"crypto/md5"
+	"crypto/sha1"
+	"encoding/base64"
 	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/astaxie/beego/validation"
@@ -68,15 +72,16 @@ func (c *UserController) Register() {
 		return
 	}
 	u := &class.User{
-		Id:       0,
+		Id:       id,
 		Email:    email,
 		Nick:     nick,
-		Password: pwd1,
+		Password: PwGen(pwd1),
 		Regtime:  time.Now(),
+		Private:  class.DefaultPvt,
 	}
 
 	if u.ExistId() {
-		valid.Error("用户名被占用")
+		valid.Error("此账号已注册")
 	}
 	if u.ExistEmail() {
 		valid.Error("邮箱被占用")
@@ -102,5 +107,74 @@ func (c *UserController) Register() {
 }
 
 func (c *UserController) Login() {
-	c.ServeJSON()
+	ret := RET{
+		Ok:      true,
+		Content: "success",
+	}
+
+	defer func() {
+		c.Data["json"] = ret
+		c.ServeJSON()
+	}()
+
+	id := c.GetString("userid")
+	pwd := c.GetString("password")
+
+	valid := validation.Validation{}
+
+	valid.Required(id, "UserId")
+	valid.Required(pwd, "Password")
+
+	valid.MaxSize(pwd, 30, "Password")
+
+	u := &class.User{Id: id}
+	switch {
+	case valid.HasErrors():
+
+	case u.ReadDB() != nil:
+		valid.Error("用户不存在")
+
+	case PwCheck(pwd, u.Password) == false:
+		valid.Error("密码错误")
+
+	default:
+		c.DoLogin(*u)
+		ret.Ok = true
+		return
+	}
+
+	ret.Content = valid.Errors[0].Key + valid.Errors[0].Message
+	ret.Ok = false
+	return
+}
+
+func PwGen(pass string) string {
+	salt := strconv.FormatInt(time.Now().UnixNano()%9000+1000, 10)
+	return Base64Encode(Sha1(Md5(pass)+salt) + salt)
+}
+
+func PwCheck(pwd, saved string) bool {
+	saved = Base64Decode(saved)
+	if len(saved) < 4 {
+		return false
+	}
+	salt := saved[len(saved)-4:]
+	return Sha1(Md5(pwd)+salt)+salt == saved
+}
+
+func Sha1(s string) string {
+	return fmt.Sprintf("%x", sha1.Sum([]byte(s)))
+}
+
+func Md5(s string) string {
+	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
+}
+
+func Base64Encode(s string) string {
+	return base64.StdEncoding.EncodeToString([]byte(s))
+}
+
+func Base64Decode(s string) string {
+	res, _ := base64.StdEncoding.DecodeString(s)
+	return string(res)
 }

@@ -7,7 +7,7 @@ import (
 )
 
 type User struct {
-	Id     int `orm:"pk"`
+	Id     string `orm:"pk"`
 	Nick   string
 	Info   string `orm:"null"`
 	Hobby  string `orm:"null"`

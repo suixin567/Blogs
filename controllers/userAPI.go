@@ -148,6 +148,11 @@ func (c *UserController) Login() {
 	return
 }
 
+//退出登录
+func (c *UserController) Logout() {
+	c.DoLogout()
+}
+
 func PwGen(pass string) string {
 	salt := strconv.FormatInt(time.Now().UnixNano()%9000+1000, 10)
 	return Base64Encode(Sha1(Md5(pass)+salt) + salt)

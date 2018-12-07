@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{.article.Title}}</title>
+	{{template "head.html" .}}
+</head>
+<body>
+
+{{template "header.html" .}}
+
+<div id="wrap">
+	<div  class="container">
+		<div class="col-sm-7">
+			<h2>{{.article.Title}}</h2>
+			<p>
+				<span>作者：<a href="{{.article.Author.Id}}">{{.article.Author.Nick}}</a></span>
+				<span>
+					发布时间：{{.article.Time}}
+				</span>
+			</p>
+			<div>
+				<pre>{{.article.Content}}</pre>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

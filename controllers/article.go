@@ -25,37 +25,37 @@ func (c *ArticleController) Get() {
 	c.TplName = "article/article.html"
 }
 
-//func (c *ArticleController) PageEdit() {
-//	id, _ := strconv.Atoi(c.Ctx.Input.Params[":id"])
-//	a := &class.Article{Id: id}
-//	a.ReadDB()
-//	a.Author.ReadDB()
-//	c.Data["article"] = a
-//	c.TplNames = "article/edit.html"
-//}
+func (c *ArticleController) PageEdit() {
+	id, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	a := &class.Article{Id: id}
+	a.ReadDB()
+	a.Author.ReadDB()
+	c.Data["article"] = a
+	c.TplName = "article/edit.html"
+}
 
-//func (c *ArticleController) Edit() {
-//	c.CheckLogin()
-//	u := c.GetSession("user").(class.User)
+func (c *ArticleController) Edit() {
+	c.CheckLogin()
+	u := c.GetSession("user").(class.User)
 
-//	id, _ := strconv.Atoi(c.Ctx.Input.Params[":id"])
-//	a := &class.Article{Id: id}
-//	a.ReadDB()
+	id, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	a := &class.Article{Id: id}
+	a.ReadDB()
 
-//	if u.Id != a.Author.Id {
-//		c.DoLogout()
-//	}
+	if u.Id != a.Author.Id {
+		c.DoLogout()
+	}
 
-//	a.Title = c.GetString("title")
-//	a.Content = c.GetString("content")
+	a.Title = c.GetString("title")
+	a.Content = c.GetString("content")
 
-//	a.Update()
+	a.Update()
 
-//	c.ret.Ok = true
-//	c.Data["json"] = c.ret
-//	c.ServeJson()
+	c.ret.Ok = true
+	c.Data["json"] = c.ret
+	c.ServeJSON()
+}
 
-//}
 //这里没有做数据验证 todo
 func (c *ArticleController) New() {
 	fmt.Println("创建文章")

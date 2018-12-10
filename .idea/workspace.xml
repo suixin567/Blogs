@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77fc3e93-5387-463e-9c0d-30cf09b6c803" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/article.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/class/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/class/article.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/class/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/class/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/article/article.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/article/article.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/profile.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,14 +43,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="3" />
-          <entry key="html" value="1565" />
+          <entry key="html" value="1578" />
           <entry key="js" value="202" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="HTML" value="1565" />
+          <entry key="HTML" value="1578" />
           <entry key="JavaScript" value="202" />
         </counts>
       </usages-collector>
@@ -70,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/article/article.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+            <state relative-caret-position="285">
+              <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -88,7 +85,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/article/archive.html">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -96,8 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/user/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="44" column="35" selection-start-line="39" selection-start-column="22" selection-end-line="44" selection-end-column="35" />
+            <state relative-caret-position="475">
+              <caret line="34" column="18" lean-forward="true" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -168,8 +165,8 @@
         <option value="$PROJECT_DIR$/views/head.html" />
         <option value="$PROJECT_DIR$/views/header.html" />
         <option value="$PROJECT_DIR$/views/user/setting.html" />
-        <option value="$PROJECT_DIR$/views/user/profile.html" />
         <option value="$PROJECT_DIR$/views/article/edit.html" />
+        <option value="$PROJECT_DIR$/views/user/profile.html" />
         <option value="$PROJECT_DIR$/views/article/article.html" />
       </list>
     </option>
@@ -255,12 +252,12 @@
       <workItem from="1544091001839" duration="25000" />
       <workItem from="1544165021605" duration="4028000" />
       <workItem from="1544177227100" duration="231000" />
-      <workItem from="1544406767357" duration="7421000" />
+      <workItem from="1544406767357" duration="7929000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31925000" />
+    <option name="totallyTimeSpent" value="32433000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1041" y="252" width="1147" height="1139" extended-state="0" />
@@ -354,13 +351,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="44" column="35" selection-start-line="39" selection-start-column="22" selection-end-line="44" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/article/edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -368,15 +358,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/article/article.html">
+    <entry file="file://$PROJECT_DIR$/views/article/archive.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/user/profile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+        <state relative-caret-position="475">
+          <caret line="34" column="18" lean-forward="true" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/article/archive.html">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/views/article/article.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

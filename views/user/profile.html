@@ -17,14 +17,21 @@
 
                 <table class="table">
                     <tr>
-                        <td>Followers</td>
-                        <td>Following</td>
+                        <td>粉丝</td>
+                        <td>关注</td>
                     </tr>
                     <tr>
                         <td>{{.u.Followers}}</td>
                         <td>{{.u.Following}}</td>
                     </tr>
                 </table>
+                <h4>Hobby</h4>
+                <div>
+                    {{$hobbys :=  split .u.Hobby "," }}
+                    {{range $hobbys}}
+                    <a class="btn btn-xs btn-success">{{.}}</a>
+                    {{end}}
+                </div>
             </div>
 
             <div class="col-sm-9">

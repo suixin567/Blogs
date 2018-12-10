@@ -36,6 +36,15 @@ const (
 	DefaultPvt = 1<<3 - 1
 )
 
+func (u User) Get() *User {
+	o := orm.NewOrm()
+	err := o.Read(&u)
+	if err == orm.ErrNoRows {
+		return nil
+	}
+	return &u
+}
+
 //	CRUD
 //	create
 //	read

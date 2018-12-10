@@ -109,3 +109,38 @@ func (c *ArticleController) Del() {
 
 	c.Redirect("/user/"+a.Author.Id, 302)
 }
+
+//根据一个标签 及一个用户id 获取文章列表
+func (c *ArticleController) Archive() {
+
+	errmsg := ""
+
+	a := class.Article{}
+	if len(c.GetString("tag")) > 0 {
+		tag := class.Tag{Name: c.GetString("tag")}.Get()
+		if tag == nil {
+			errmsg += fmt.Sprintf("Tag[%s] is not exist.\n", c.GetString("tag"))
+		} else {
+			a.Tags = []*class.Tag{tag}
+		}
+	}
+
+	if len(c.GetString("author")) > 0 {
+		author := class.User{Id: c.GetString("author")}.Get()
+		if author == nil {
+			errmsg += fmt.Sprintf("User[%s] is not exist.\n", c.GetString("author"))
+		} else {
+			a.Author = author
+		}
+	}
+
+	if len(errmsg) == 0 {
+		rets := a.Gets()
+		c.Data["articles"] = rets
+	}
+
+	c.Data["err"] = errmsg
+
+	c.TplName = "article/archive.html"
+
+}

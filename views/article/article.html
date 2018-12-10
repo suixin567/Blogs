@@ -25,7 +25,7 @@
 
 		<h4>文本标签</h4>
 {{range .article.Tags}}
-		<a href="" class="btn btn-{{.RandColor}} btn-xs">{{.Name}}</a>
+		<a href="/archive?tag={{.Name}}" class="btn btn-{{.RandColor}} btn-xs">{{.Name}}</a>
 		{{end}}
 	</div>
 </div>

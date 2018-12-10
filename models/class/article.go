@@ -82,9 +82,32 @@ func (a Article) Delete() (err error) {
 	return
 }
 
-//获取一个人的所有文章。
-func (a Article) Gets() (ret []Article) {
+//获取一个人的所有文章。（如果有标签，也会过滤标签）
+func (a Article) Gets() (rets []Article) {
 	o := orm.NewOrm()
-	o.QueryTable("article").Filter("Author", a.Author).Filter("defunct", 0).All(&ret)
+	//	o.QueryTable("article").Filter("Author", a.Author).Filter("defunct", 0).All(&ret)
+	//	return
+	qs := o.QueryTable("article")
+
+	if a.Author != nil {
+		qs = qs.Filter("Author", a.Author)
+	}
+
+	if len(a.Tags) == 1 {
+		qs = qs.Filter("Tags__Tag", a.Tags[0])
+	}
+
+	qs = qs.Filter("defunct", 0)
+
+	//	Author
+	qs = qs.RelatedSel()
+
+	qs.All(&rets)
+
+	//	Tags
+	for i := range rets {
+		_, _ = o.LoadRelated(&rets[i], "Tags")
+	}
 	return
+
 }

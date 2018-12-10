@@ -53,6 +53,7 @@ func (a Article) Delete() (err error) {
 	return
 }
 
+//获取一个人的所有文章。
 func (a Article) Gets() (ret []Article) {
 	o := orm.NewOrm()
 	o.QueryTable("article").Filter("Author", a.Author).Filter("defunct", 0).All(&ret)

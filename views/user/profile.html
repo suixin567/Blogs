@@ -1,14 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>User Profile</title>
+    {{template "head.html".}}
 </head>
 <body>
-{{template "header.html"}}
-<input name="tag" value="{{.userid}}">
-<input name="tag" value="{{.tag}}">
-<input name="tag" value="{{range $index,$value := .hobby}}
-{{if $index}},{{end}}{{.}}{{end}}">
+<div>
+
+    {{template "header.html" .}}
+
+    <div id="wrap">
+        <div class="container">
+            <div class="col-sm-3">
+                <h3><a href="{{.u.Url}}">{{.u.Nick}}</a></h3>
+                <pre>{{.u.Info}}</pre>
+
+                <table class="table">
+                    <tr>
+                        <td>Followers</td>
+                        <td>Following</td>
+                    </tr>
+                    <tr>
+                        <td>{{.u.Followers}}</td>
+                        <td>{{.u.Following}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-sm-9">
+                {{range $index,$value:=.articles}}
+
+                <div>
+                    <h2><a href="/article/{{$value.Id}}">{{$value.Title}}</a></h2>
+
+                    <div>
+                        <p>
+                            <span>{{$value.Time}}</span>
+
+                            {{ if $.user}}
+                            {{if eq $value.Author.Id $.user.Id}}
+                            <span class="pull-right">
+								<a href="/article/edit/{{$value.Id}}">编辑</a>
+								<a href="/article/del/{{$value.Id}}">删除</a>
+							</span>
+                            {{end}}
+                            {{end}}
+                        </p>
+                    </div>
+
+                    <div>
+                        <pre>{{$value.Content}}</pre>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+
+    </div>
 </body>
 </html>

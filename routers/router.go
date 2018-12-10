@@ -19,7 +19,10 @@ func init() {
 	beego.Router("/article/new", &controllers.ArticleController{}, `get:PageNew;post:New`)
 	beego.Router("/article/:id([0-9]+)", &controllers.ArticleController{}, `get:Get`)
 	beego.Router("/article/edit/:id([0-9]+)", &controllers.ArticleController{}, `get:PageEdit;post:Edit`)
-
+	//查看个人主页
+	beego.Router("/user/:id", &controllers.UserController{}, `get:Profile`)
+	//删除文章
+	beego.Router("/article/del/:id([0-9]+)", &controllers.ArticleController{}, `get:Del`)
 	beego.Router("/user/profile", &controllers.UserController{}, `get:Profile`)
 	beego.Router("/api/user/profile", &controllers.UserController{}, `get:API_Profile`)
 }

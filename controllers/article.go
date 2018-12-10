@@ -83,20 +83,20 @@ func (c *ArticleController) New() {
 	c.ServeJSON()
 }
 
-//func (c *ArticleController) Del() {
-//	c.CheckLogin()
-//	u := c.GetSession("user").(class.User)
+func (c *ArticleController) Del() {
+	c.CheckLogin()
+	u := c.GetSession("user").(class.User)
 
-//	id, _ := strconv.Atoi(c.Ctx.Input.Params[":id"])
-//	a := &class.Article{Id: id}
-//	a.ReadDB()
+	id, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	a := &class.Article{Id: id}
+	a.ReadDB()
 
-//	if u.Id != a.Author.Id {
-//		c.DoLogout()
-//	}
+	if u.Id != a.Author.Id {
+		c.DoLogout()
+	}
 
-//	a.Defunct = true
-//	a.Update()
+	a.Defunct = true
+	a.Update()
 
-//	c.Redirect("/user/"+a.Author.Id, 302)
-//}
+	c.Redirect("/user/"+a.Author.Id, 302)
+}

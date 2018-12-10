@@ -1,6 +1,8 @@
 package controllers
 
-//	"github.com/astaxie/beego"
+import (
+	"DDN_XS/models/class"
+)
 
 type UserController struct {
 	//	beego.Controller
@@ -8,9 +10,14 @@ type UserController struct {
 }
 
 func (c *UserController) Profile() {
-	c.Data["userid"] = "geek"
-	c.Data["tag"] = "i am a fish"
-	c.Data["hobby"] = []string{"wan", "you", "xi"}
+	id := c.Ctx.Input.Param(":id")
+	u := &class.User{Id: id}
+	u.ReadDB()
+
+	c.Data["u"] = u
+	a := &class.Article{Author: u}
+	as := a.Gets()
+	c.Data["articles"] = as
 	c.TplName = "user/profile.html"
 }
 

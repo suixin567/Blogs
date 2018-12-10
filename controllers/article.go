@@ -4,6 +4,7 @@ import (
 	"DDN_XS/models/class"
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 type ArticleController struct {
@@ -26,6 +27,7 @@ func (c *ArticleController) Get() {
 }
 
 func (c *ArticleController) PageEdit() {
+	c.CheckLogin()
 	id, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	a := &class.Article{Id: id}
 	a.ReadDB()
@@ -49,6 +51,13 @@ func (c *ArticleController) Edit() {
 	a.Title = c.GetString("title")
 	a.Content = c.GetString("content")
 
+	//读取标签
+	strs := strings.Split(c.GetString("tag"), ",")
+	tags := []*class.Tag{}
+	for _, v := range strs {
+		tags = append(tags, class.Tag{Name: strings.TrimSpace(v)}.GetOrNew())
+	}
+	a.Tags = tags
 	a.Update()
 
 	c.ret.Ok = true

@@ -21,8 +21,12 @@
 			<div>
 				<pre>{{.article.Content}}</pre>
 			</div>
-			
 		</div>
+
+		<h4>文本标签</h4>
+{{range .article.Tags}}
+		<a href="" class="btn btn-{{.RandColor}} btn-xs">{{.Name}}</a>
+		{{end}}
 	</div>
 </div>
 

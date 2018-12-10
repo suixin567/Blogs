@@ -18,7 +18,7 @@ func init() {
 		`Asia%2FShanghai`), 30)
 	orm.SetMaxIdleConns("default", 30) //设置数据库最大空闲连接
 	orm.SetMaxOpenConns("default", 30) //设置数据库最大连接数
-	orm.RegisterModel(new(class.User), new(class.Article))
+	orm.RegisterModel(new(class.User), new(class.Article), new(class.Tag))
 	orm.RunSyncdb("default", false, true)
 	fmt.Println("注册数据库")
 }

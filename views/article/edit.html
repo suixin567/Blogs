@@ -17,6 +17,8 @@
 				<br>
 				<textarea name="content" class="form-control" rows="20" placeholder="请输入正文">{{.article.Content}}</textarea>
 				<br>
+				标签(以英文逗号分隔):
+				<input name="tag" class="form-control" value="{{range $idx,$val := .article.Tags}}{{if $idx}}, {{end}}{{.Name}}{{end}}">
 				<input class="btn btn-default" type="submit">
 			</form>
 		</div>

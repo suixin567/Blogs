@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"DDN_XS/models/class"
+	"fmt"
 
 	"github.com/astaxie/beego"
 )
@@ -30,7 +31,9 @@ func (c *BaseController) IsLogin() bool {
 }
 
 func (c *BaseController) CheckLogin() {
+
 	if !c.IsLogin() {
+		fmt.Println("未登录")
 		c.Redirect("/join", 302)
 		c.Abort("302")
 	}

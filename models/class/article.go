@@ -15,7 +15,7 @@ type Article struct {
 	Replys  int
 	Views   int
 
-	Tag string
+	Tags []*Tag `orm:"rel(m2m)"`
 
 	Time time.Time `orm:"auto_now_add;type(datetime)"`
 
@@ -27,7 +27,7 @@ func (a *Article) ReadDB() (err error) {
 	if err = o.Read(a); err != nil {
 		beego.Info(err)
 	}
-
+	_, _ = o.LoadRelated(a, "tags")
 	return
 }
 
@@ -44,6 +44,35 @@ func (a Article) Update() (err error) {
 	if _, err = o.Update(&a); err != nil {
 		beego.Info(err)
 	}
+	m2m := o.QueryM2M(&a, "Tags")
+	//	m2m.Clear()
+	//	m2m.Add(a.Tags)
+
+	old := Article{Id: a.Id}
+	_, _ = o.LoadRelated(&old, "Tags")
+
+	//	insert
+VI:
+	for _, vi := range a.Tags {
+		for _, vj := range old.Tags {
+			if vi.Id == vj.Id {
+				continue VI
+			}
+		}
+		m2m.Add(vi)
+	}
+
+	//	del
+VD:
+	for _, vi := range old.Tags {
+		for _, vj := range a.Tags {
+			if vi.Id == vj.Id {
+				continue VD
+			}
+		}
+		m2m.Remove(vi)
+	}
+
 	return
 }
 

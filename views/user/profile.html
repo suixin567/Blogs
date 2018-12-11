@@ -35,6 +35,7 @@
             </div>
 
             <div class="col-sm-9">
+                <h3>{{.u.Nick}} 发表的文章：</h3>
                 {{range $index,$value:=.articles}}
 
                 <div>
@@ -60,6 +61,18 @@
                     </div>
                 </div>
                 {{end}}
+
+                <h3>{{.u.Nick}} 发表的评论：</h3>
+                <div>
+                    {{range .replys}}
+                    <div>
+                        <p>
+                            {{.Time}}在<a href="/article/{{.Article.Id}}">{{.Article.Title}}</a>回复了：
+                            <strong>{{.Content}}</strong>
+                        </p>
+                    </div>
+                    {{end}}
+                </div>
             </div>
         </div>
 

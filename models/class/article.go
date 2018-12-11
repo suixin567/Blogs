@@ -8,16 +8,17 @@ import (
 )
 
 type Article struct {
-	Id      int    `orm:"pk"`
-	Title   string `orm:"size(80)"`
-	Content string `orm:"type(text)`
-	Author  *User  `orm:"rel(fk)"`
-	Replys  int
-	Views   int
+	Id        int    `orm:"pk"`
+	Title     string `orm:"size(80)"`
+	Content   string `orm:"type(text)`
+	Author    *User  `orm:"rel(fk)"`
+	NumReplys int
+	NumViews  int
 
 	Tags []*Tag `orm:"rel(m2m)"`
 
-	Time time.Time `orm:"auto_now_add;type(datetime)"`
+	Replys []*Reply  `orm:"-"` //评论
+	Time   time.Time `orm:"auto_now_add;type(datetime)"`
 
 	Defunct bool
 }

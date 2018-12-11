@@ -15,9 +15,15 @@ func (c *UserController) Profile() {
 	u.ReadDB()
 
 	c.Data["u"] = u
+
 	a := &class.Article{Author: u}
 	as := a.Gets()
+
+	r := &class.Reply{Author: u}
+	rs := r.Gets()
+
 	c.Data["articles"] = as
+	c.Data["replys"] = rs
 	c.TplName = "user/profile.html"
 }
 

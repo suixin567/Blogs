@@ -22,6 +22,7 @@ func (c *ArticleController) Get() {
 	a := &class.Article{Id: id}
 	a.ReadDB()
 	a.Author.ReadDB()
+	a.Replys = class.Reply{Article: a}.Gets() //读取文章的评论
 	c.Data["article"] = a
 	c.TplName = "article/article.html"
 }

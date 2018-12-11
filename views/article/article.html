@@ -21,6 +21,20 @@
 			<div>
 				<pre>{{.article.Content}}</pre>
 			</div>
+            <!--评论-->
+
+            <div>
+				评论:
+                {{range .article.Replys}}
+				<div>
+					<p>
+						<a href="/user/{{.Author.Id}}">{{.Author.Nick}} </a>
+						{{.Time}}
+					</p>
+					<pre>{{.Content}}</pre>
+				</div>
+				{{end}}
+            </div>
 		</div>
 
 		<h4>文本标签</h4>

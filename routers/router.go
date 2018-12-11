@@ -25,7 +25,8 @@ func init() {
 	beego.Router("/article/del/:id([0-9]+)", &controllers.ArticleController{}, `get:Del`)
 	//根据标签检索文章
 	beego.Router("/archive", &controllers.ArticleController{}, `get:Archive`)
-
+	//发表评论
+	beego.Router("/reply/new", &controllers.ReplyController{}, `post:New`)
 	beego.Router("/user/profile", &controllers.UserController{}, `get:Profile`)
 	beego.Router("/api/user/profile", &controllers.UserController{}, `get:API_Profile`)
 }

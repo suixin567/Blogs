@@ -35,6 +35,15 @@
 				</div>
 				{{end}}
             </div>
+			<!--提交评论-->
+			<div>
+				发表评论：
+				<form action="/reply/new" method="post">
+					<textarea name="content" class="form-control"></textarea>
+					<input type="hidden" name="article_id" value="{{.article.Id}}">
+					<input type="submit" class="btn btn-default">
+				</form>
+			</div>
 		</div>
 
 		<h4>文本标签</h4>
@@ -43,6 +52,21 @@
 		{{end}}
 	</div>
 </div>
+
+
+<script type="text/javascript">
+    $('form').bind('submit', function(){
+        var tmp = ajaxSubmit(this, function(){
+            if ( tmp.responseJSON.success == true ){
+                alert("评论成功")
+                location.reload()
+            }else{
+                alert(tmp.responseJSON.content)
+            }
+        })
+        return false;
+    })
+</script>
 
 </body>
 </html>
